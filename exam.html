@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Online Exam</title>
+</head>
+<body>
+  <h2>Online Exam</h2>
+  <p>Time left: <span id="timer">02:00</span></p>
+
+  <p>1. Which language runs in a web browser?</p>
+  <input type="radio" name="q1" value="a"> Java<br>
+  <input type="radio" name="q1" value="b"> JavaScript<br>
+  <input type="radio" name="q1" value="c"> Python<br>
+  
+  <p>2. What does HTML stand for?</p>
+  <input type="radio" name="q2" value="a"> Hyper Text Markup Language<br>
+  <input type="radio" name="q2" value="b"> High Text Machine Language<br>
+  <input type="radio" name="q2" value="c"> Hyper Tool Multi Language<br>
+
+  <p>3. Which symbol is used for comments in JavaScript?</p>
+  <input type="radio" name="q3" value="a"> #<br>
+  <input type="radio" name="q3" value="b"> //<br>
+  <input type="radio" name="q3" value="c"> **<br>
+
+  <br>
+  <button onclick="submitExam()">Submit</button>
+  <h3 id="result"></h3>
+
+  <script>
+    var answers = {q1:"b",q2:"a",q3:"b"};
+
+    function submitExam(){
+      clearInterval(timerId);
+      var score = 0;
+      for (var q in answers){
+        var chosen = document.querySelector("input[name='"+q +"']:checked");
+        if(chosen&&chosen.value===answers[q]) {
+          score++;
+        }
+      }
+      document.getElementById("result").innerHTML = "Your score: "+ score + " / 3";
+    }
+    var timeLeft=120;
+    var timerId=setInterval(function(){
+      timeLeft--;
+      var m=Math.floor(timeLeft/60);
+      var s=timeLeft%60;
+      document.getElementById("timer").innerHTML =
+        (m < 10 ? "0" : "") + m + ":" + (s < 10 ? "0" : "") + s;
+      if (timeLeft <= 0) {
+        alert("Time is up!");
+        submitExam();
+      }
+    }, 1000);
+  </script>
+</body>
+</html>

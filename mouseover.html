@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Mouse Over Event</title>
+</head>
+<body style="text-align:center; font-family:Arial">
+	<h1>Move your mouse over the image<h1>
+	<img id="image" src="image1.jpg" widhth="500" height="500" onmouseover="changein()" onmouseout="changeout()">
+	<h2 id="text">This is the old text</h2>
+	<script>
+		function changein(){
+			document.getElementById("image").src="image2.jpg";
+			document.getElementById("text").innerHTML="This is the new text";
+		}
+		function changeout(){
+			document.getElementById("image").src="image1.jpg";
+			document.getElementById("text").innerHTML="This is the old text";
+		}
+	</script>
+</body>
+</html>

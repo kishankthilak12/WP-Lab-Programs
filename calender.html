@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Calender</title>
+</head>
+<body>
+	
+	<h2>Calendar Generator</h2>
+	
+	<form action="#" method="post">
+		<label for="year">Enter Year : </label><br>
+		<input type="number" id="year" name="year" required><br>
+		<br>
+	
+		<label for="month">Enter Month : </label><br>
+		<input type="number" id="month" name="month" required><br>
+		<br><br>
+		<button type="submit" onclick="showCalender(); return false;">
+    Show Calendar
+</button>
+
+	
+	</form>
+	<div id="calender"></div>
+	<script>
+	function showCalender(){
+		var year=Number(document.getElementById("year").value);
+		var month=Number(document.getElementById("month").value);
+		var months=["January","February","March","April","May","June","July","August","September","October","November","December"];
+		var days=["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
+		var firstDay = new Date(year, month - 1, 1).getDay();
+		var totalDays = new Date(year, month, 0).getDate();
+		var result="<h3>"+months[month-1]+" "+year+ "</h3>";
+	
+		result+="<table border='1' cellpadding='10'>";
+		result+="<tr>";
+		for(var i=0;i<7;i++){
+			result+="<th>"+days[i]+"</th>";
+			
+		} 
+		result+="</tr><tr>";
+		for(var i=0;i<firstDay;i++){
+			result+="<td></td>";
+			
+		}
+		
+		
+		for(var d=1;d<=totalDays;d++){
+			result+="<td>"+d+"</td>";
+			if ((firstDay + d) % 7 == 0) {
+    result += "</tr><tr>";
+}
+		} 
+		
+		
+		result+="</tr></table>";
+		document.getElementById("calender").innerHTML = result;
+		}
+	</script>
+</body>
+</html>
